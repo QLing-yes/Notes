@@ -3,7 +3,7 @@ import sidebar from "./sidebar.json";
 
 export default defineConfig({
     title: "notes",
-    base: '/notes/',
+    base: '/Notes/',
     themeConfig: {
         outlineTitle: '',
         socialLinks: [
