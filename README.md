@@ -1,2 +1,2 @@
-https://qling.cf
-https://ling-in.top
+- https://qling.cf
+- https://ling-in.top
