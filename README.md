@@ -1,2 +1,3 @@
 - https://qling.cf
 - https://ling-in.top
+- https://qling-yes.github.io/Notes/
