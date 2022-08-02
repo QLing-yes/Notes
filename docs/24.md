@@ -44,7 +44,7 @@
   >
   > git push origin  - 推送至全部
   
-- `git push origin 分支名 --force` - 覆盖远程
+- `git push origin main --force` - 覆盖远程
 
   1. `-f`
 
