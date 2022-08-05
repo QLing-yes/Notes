@@ -236,6 +236,10 @@ function func (a: number, b?: number): number//表示选项b可有可无
 constructor(private str: string) {}
 ```
 
+implements
+
+`implements`类似`extends`但是需要实现所有的属性和方法
+
 ## 声明文件 `declare.d.ts`
 
 - 通过`declare`声明的对象在任意文件和全局中具有类型
