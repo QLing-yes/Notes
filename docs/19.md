@@ -168,3 +168,31 @@ export class AppModule {}
   ```
 
   > 或`.forRoutes('*')`
+
+## [异常处理](https://docs.nestjs.com/exception-filters#custom-exceptions)
+
+```typescript
+throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+```
+
+`HttpException(response,status)`
+
+- `response<string | obj>` 响应信息
+- `status<number>` HTTP[状态代码](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)。
+
+### [异常过滤器](https://docs.nestjs.com/exception-filters#exception-filters-1)
+
+> 有点像是`HttpException`的中间件
+
+## nestjs的元数据
+
+`@SetMetadata(key:string, value:any)` - 定义元数据
+
+`<Reflector>.get(key, target)` - 获取元数据
+
+`<Reflector>.getAllAndOverride(key,targets:[])` - 覆盖(仅context)
+
+`<Reflector>.getAllAndMerge(key,targets:[])` - 合并(仅context)
+
+> [执行上下文](https://docs.nestjs.com/fundamentals/execution-context#executioncontext-class)
+
