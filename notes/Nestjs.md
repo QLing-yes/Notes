@@ -6,6 +6,14 @@
 
 ##### [RECIPES工具](https://docs.nestjs.com/recipes/crud-generator)
 
+##### 生成器 `nest g `mo-模块 co-控制器 s-服务 resource-新资源
+
+## 部分装饰器
+
+`@Param(key?: string, ...pipes?)`
+`@Query(key?: string, ...pipes?)`
+`@UsePipes()`
+
 ## 控制器
 
 ### [路由参数](https://docs.nestjs.com/controllers#route-parameters)
@@ -183,6 +191,71 @@ throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
 ### [异常过滤器](https://docs.nestjs.com/exception-filters#exception-filters-1)
 
 > 有点像是`HttpException`的中间件
+
+## 管道(pipes)
+
+> 管道在异常区内运行,
+> 这意味着(管道内可直接抛出异常响应)当 Pipe 抛出异常时,它由异常层处理（**异常过滤器**).
+>
+> **客户端请求 -> 过滤 -> 管道 -> 请求处理程序**
+
+### [内置管道](https://docs.nestjs.com/pipes#built-in-pipes)
+
+- 自定义状态码示例:`new ParseIntPipe({ errorHttpStatusCode: 400 })` - 部分选项
+
+> `ValidationPipe` [#](#/validator)
+
+### [自定义管道](https://docs.nestjs.com/pipes#custom-pipes)
+
+```typescript
+@Injectable()
+export class ValidationPipe implements PipeTransform<any, ArgumentMetadata> {
+  transform(value: any, metadata: ArgumentMetadata) {
+    return value;
+  }
+}
+```
+
+- `PipeTransform<T, R>` `T`-value类型 `R`返回值类型
+- `value` 当前处理方法参数的值
+- `metadata` 当前处理方法参数的元数据
+
+> 绑定管道示例:
+> `@UsePipes(Pipe)`
+> `@Body(Pipe)`
+
+[对象结构验证](https://docs.nestjs.com/pipes#object-schema-validation)
+
+### [类验证器](https://docs.nestjs.com/pipes#class-validator)<a id="/validator"></a>
+
+`npm i --save class-validator class-transformer`
+
+class-validator - 类和对象的相互转换 [#](https://github.com/typestack/class-transformer#table-of-contents)
+class-transformer - 各种意义上的验证器 [#](https://github.com/typestack/class-validator#validation-decorators)
+
+### [全局管道](https://docs.nestjs.com/pipes#global-scoped-pipes)
+
+`app.useGlobalPipes(<...Pipes>);`
+
+> 全局管道用于整个应用程序、每个控制器和每个路由处理程序。
+>
+> **注意**对于[混合应用程序](https://docs.nestjs.com/faq/hybrid-application)，该`useGlobalPipes()`方法不会为网关和微服务设置管道。
+> 对于标准(非混合) 微服务应用使用 `useGlobalPipes()` 全局设置管道。
+
+**真全局**
+
+```typescript
+//app.module.ts
+import { Module } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
+
+@Module({
+  providers: [{provide: APP_PIPE, useClass: ValidationPipe}]
+})
+export class AppModule {}
+```
+
+
 
 ## nestjs的元数据
 
