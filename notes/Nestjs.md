@@ -8,7 +8,7 @@
 
 ##### 生成器 `nest g `mo-模块 co-控制器 s-服务 resource-新资源
 
-## 部分装饰器
+## [部分装饰器](https://docs.nestjs.cn/9/customdecorators?id=%e5%8f%82%e6%95%b0%e8%a3%85%e9%a5%b0%e5%99%a8)
 
 `@Param(key?: string, ...pipes?)`
 `@Query(key?: string, ...pipes?)`
@@ -201,9 +201,9 @@ throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
 
 ### [内置管道](https://docs.nestjs.com/pipes#built-in-pipes)
 
-- 自定义状态码示例:`new ParseIntPipe({ errorHttpStatusCode: 400 })` - 部分选项
+- 自定义状态码示例:`new ParseIntPipe({ errorHttpStatusCode: 400 })` - 部分入参选项
 
-> `ValidationPipe` [#](#/validator)
+> [部分介绍](#validator)
 
 ### [自定义管道](https://docs.nestjs.com/pipes#custom-pipes)
 
@@ -223,15 +223,6 @@ export class ValidationPipe implements PipeTransform<any, ArgumentMetadata> {
 > 绑定管道示例:
 > `@UsePipes(Pipe)`
 > `@Body(Pipe)`
-
-[对象结构验证](https://docs.nestjs.com/pipes#object-schema-validation)
-
-### [类验证器](https://docs.nestjs.com/pipes#class-validator)<a id="/validator"></a>
-
-`npm i --save class-validator class-transformer`
-
-class-validator - 类和对象的相互转换 [#](https://github.com/typestack/class-transformer#table-of-contents)
-class-transformer - 各种意义上的验证器 [#](https://github.com/typestack/class-validator#validation-decorators)
 
 ### [全局管道](https://docs.nestjs.com/pipes#global-scoped-pipes)
 
@@ -255,7 +246,49 @@ import { APP_PIPE } from '@nestjs/core';
 export class AppModule {}
 ```
 
+[对象结构验证](https://docs.nestjs.com/pipes#object-schema-validation)
 
+## <a id="validator">验证器</a>
+
+`npm i --save class-validator class-transformer`
+
+class-validator - 类和对象的相互转换 [#](https://github.com/typestack/class-transformer#table-of-contents)
+class-transformer - 各种意义上的验证器 [#](https://github.com/typestack/class-validator#validation-decorators)
+
+- [ValidationPipe](https://docs.nestjs.com/techniques/validation#using-the-built-in-validationpipe)
+
+  ```typescript
+  //app.module.ts
+  app.useGlobalPipes(
+      new ValidationPipe({//一些习惯性配置
+          transform: true,
+          enableDebugMessages: true,
+          whitelist: true,
+          stopAtFirstError: true,
+          disableErrorMessages: false,
+          forbidUnknownValues: true,
+          forbidNonWhitelisted: true,
+          // exceptionFactory: (err) => {
+          //   console.log(err);
+          // },
+      }),
+  );
+  ```
+
+  > 内置`ValidationPipe`基于`class-validator`和`class-transformer`
+
+- `ParseArrayPipe` - 数组类型限制
+
+  ```typescript
+  new ParseArrayPipe({ items: Number })
+  ```
+
+### 工具类
+
+- `PartialType()` - 将类属性添加可选类型
+- `PickType()` - 类中挑选属性并返回新类
+- `OmitType()` - 与`PickType()`相反
+- `IntersectionType()` - 合并类型
 
 ## nestjs的元数据
 

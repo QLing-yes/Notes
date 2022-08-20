@@ -343,12 +343,7 @@ eventEmitter.emit('start', 'started')
 //控制台将会打印 started
 ```
 
-
-
-作者：Pinocchioooo
-链接：https://juejin.cn/post/6844904199013007367
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://juejin.cn/post/6844904199013007367
 
 # `Hash 哈希加密`
 

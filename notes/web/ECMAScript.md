@@ -179,7 +179,7 @@ Object.assign(target,object2,object3,...);   // 第一个参数是目标对象�
 
 # Map 和 Set [🔗](https://www.runoob.com/w3cnote/es6-map-set.html)
 
-new Map() [🔗](https://www.runoob.com/typescript/ts-map.html)
+new Map() [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
 - 另一个: weakMap键只能是**引用类型**
 
