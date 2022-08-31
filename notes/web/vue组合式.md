@@ -1,6 +1,6 @@
 > **全篇为组合式**
 
-# 介绍 [🔗](https://staging-cn.vuejs.org/guide/introduction.html#api-styles)
+## 介绍 [🔗](https://staging-cn.vuejs.org/guide/introduction.html#api-styles)
 
 - **选项式 API**
 
@@ -23,7 +23,7 @@
 
   4. 完美取代`mixin`。
 
-# 响应式
+## 响应式
 
 - `reactive()`**默认是深层响应式**(深代理);
 
@@ -64,13 +64,13 @@ count.value = { xx: 0 };//{ value: { xx: 0 } }
 
 - reactive()入参一个代理会返回它自己(直接返回)
 
-# 格式
+## 格式
 
 - 开头
   1. `v` - 自定义指令
   2. `on` - 多数为生命周期钩子
 
-# 自定义指令
+## 自定义指令
 
 ```vue
 <script setup>
@@ -89,18 +89,9 @@ export default {
 </script>
 ```
 
-## [指令钩子](https://staging-cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks)
-
-<img style="float: left;" src="../image/image-20220408124359060.png" alt="image-20220408124359060"  />
-
-### [钩子参数](https://staging-cn.vuejs.org/guide/reusability/custom-directives.html#hook-arguments)
+### [指令钩子](https://staging-cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks)
 
 > 除了 `el` 外，你应该将这些参数都视为只读的。若你需要在不同的钩子间共享信息，推荐方法是通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute。
->
-
-> TIP
-
-- 
 
 **`简化形式`**
 
@@ -110,7 +101,7 @@ export default {
 app.directive('xxx', (/* 钩子参数 */) => {})
 ```
 
-# el
+### el
 
 ```js
 vnode.data.on.<someEvent>.apply(vnode.context,[参数...]);//触发并代理
@@ -128,7 +119,7 @@ el.event.appear.handler = () => {//修改代理
 - 自定义指令的参数也可以是动态的`v-example:[arg]="value"`
 - 组件上使用自定义指令时，它会始终应用于组件的根节点
 
-# [插件](https://staging-cn.vuejs.org/guide/reusability/plugins.html#introduction)
+## [插件](https://staging-cn.vuejs.org/guide/reusability/plugins.html#introduction)
 
 - use()必须提供 `install` 方法
 - 该方法需要在调用 `new Vue()` 之前被调用。
@@ -142,20 +133,41 @@ const Plugin = {
 app.use(Plugin, options)//options 对应上面的 options
 ```
 
-# 路由
+## 路由
 
 - [简单路由示例](https://staging-cn.vuejs.org/guide/scaling-up/routing.html#simple-routing-from-scratch)
 
-# [异步组件](https://staging-cn.vuejs.org/guide/components/async.html#async-components)
+## [异步组件](https://staging-cn.vuejs.org/guide/components/async.html#async-components)
 
 - 拆分应用为更小的块，并仅在需要时再从服务器加载相关组件
 
-# $refs
+## $refs
 
 - 视图渲染后赋值
 
 ```js
-let content = ref<HTMLElement | null>(null);
+const content = ref<Element>();
 //<div ref="content" />
 ```
 
+## provide / inject
+
+```js
+provide(/* 注入名 */ 'message', /* 值 */ 'hello!')//提供
+inject('message')//注入
+```
+
+## 定义全局对象
+
+```typescript
+//最好在入口文件内
+window.$foo = (...params) => { return '1' }
+//declare.d.ts
+declare function foo(params: number, d: string): string
+//使用
+$foo(1,'1')
+```
+
+> OR: provide / inject
+>
+> ...

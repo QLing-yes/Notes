@@ -49,12 +49,14 @@
   
   > interface扩展接口  !== Type扩展类型
   >
-  > Interface可通过 **extends** 继承其他Interface (同名接口会合并)
-  > Type可通过 `<基泛型> & {code}` 继承其他泛型  -交叉类型(&)
+  > `interface`可通过 `extends` 继承其他interface (同名接口会合并)
+  > `type`可通过 `<基泛型> & {code}` 继承其他泛型  -交叉类型(&)
+  >
+  > `implements`类似`extends`但是需要实现所有的属性和方法
   >
   > ```ts
   > interface A1{
-  >     a:number;
+  >  a:number;
   > }
   > type B = A1 | {b:string};
   > type C = A1 & {b:string};
@@ -64,10 +66,25 @@
   >
   > 省略...
 
+## typeof - 获取对象类型
+
+```typescript
+class Foo {
+  f(a: string): number {}
+  fn(b: Parameters<typeof this.f>[0]) {
+    const a: Parameters<typeof this.f>[0] = '';
+  }
+}
+let h: Foo;
+type d = Parameters<typeof h.f>[0];
+```
+
 ## Keyof - 获取对象索引
 
-- `type Point = keyof { x: number; y: number };` **//  "x" | "y"**
-- `type Mapish  = keyof { [k: string]: unknown };` **// string | number**
+```typescript
+ype Point = keyof { x: number; y: number }; //  "x" | "y"
+type Mapish  = keyof { [k: string]: unknown }; // string | number
+```
 
 ## 映射类型
 
@@ -137,17 +154,15 @@
   type A1 = ConstructorParameters<A> // [a:number]
   ```
 
-- `<T> extends <U>?<X>:<Y>` - **条件类型** , U的类型可以**表示**T, 那么返回X, 否则Y
+- `<T> extends <U>?<X>:<Y>` - **条件类型** , U类型可以**表示**T, 那么返回X, 否则Y
 
 - infer - **类型推断**, 配合条件类型使用
 
   ```ts
   interface T { (d:number):string }
   type a = T extends (...U: infer P) => string ? P : Function;//[d: number]
-  // (...U: infer P) == arguments 或 (d:number)=>string
-  //infer == P.push(d:number) 或 P == [...U]
   ```
-
+  
   
 
 ## 元组(Tuple)
@@ -213,10 +228,6 @@ function func (a: number, b?: number): number//表示选项b可有可无
 
 > C#函数重载每一个都可以有具体实现
 
-## namespace
-
-- `export` - 暴露空间中属性关键字
-
 ## 类
 
 关键字:
@@ -240,6 +251,20 @@ implements
 
 `implements`类似`extends`但是需要实现所有的属性和方法
 
+## namespace 命名空间
+
+```typescript
+//定义
+namespace SomeNameSpaceName { 
+   export interface ISomeInterfaceName {}  
+   export class SomeClassName {}
+}
+//引用文件
+/// <reference path = "SomeFileName.ts" />
+//访问
+SomeNameSpaceName.SomeClassName;
+```
+
 ## 声明文件 `declare.d.ts`
 
 - 通过`declare`声明的对象在任意文件和全局中具有类型
@@ -254,13 +279,13 @@ implements
 - [修改**已存在**的全局变量的**声明**](https://juejin.cn/post/6844903993727008776#heading-11)
 
   ```ts
+  //用node下的global举例
   declare global {
       interface String {
           hump(input: string): string;
       }
   }
   // 注意: 修改"全局声明"必须在模块内部, 所以至少要有 export{}字样
-  // 不然会报错❌: 全局范围的扩大仅可直接嵌套在外部模块中或环境模块声明中
   export {}
   ```
 
@@ -385,10 +410,12 @@ implements
     "module": "commonjs",
     //"module": "NodeNext",
     "paths": { "@/*": ["./*" ] },/* 路径映射 //打包后映射的路径不会处理 */
+    
     "outDir": "./outDir",/* 指定发出文件位置 */
     "declaration": true, /* 为发出的JavaScript文件生成 d.ts */
     "sourceMap": true, /* 为发出的JavaScript文件创建源映射文件 */
     "inlineSourceMap": true, /* 在发出的JavaScript中包含源源映射文件。*/
+    
     "noImplicitAny": true,  /*为隐含`任何`类型的表达式和声明启用错误报告  */
     "experimentalDecorators": true,//启用实验性的装饰器
     "emitDecoratorMetadata": true, //为源文件中的修饰声明的设计类型元数据
@@ -409,5 +436,8 @@ function returnResultType<T>(arg: Sidebar<T>): T {
 }
 const result = returnResultType((arg: any) => 3);
 type ResultType = typeof result;
+//or
+type f = typeof func<string>;
+type d = ReturnType<f>;
 ```
 

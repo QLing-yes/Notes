@@ -1,13 +1,13 @@
 # [Math](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
-|      | sqrt `平方根`    | min `最小值`      |
-| :--- | :--------------- | :---------------- |
-|      | cbrt `立方根`    | max `最大值`      |
-|      | log `对数`       | round `四舍五入`  |
-|      | abs `取绝对值`   |                   |
-|      | atan `反正切`    | ceil `天花板函数` |
-|      | floor `地板函数` | pow `次方幂`      |
-|      | PI `π派`         | trunc `去小数`    |
+|      | sqrt `平方根`  | min `最小值`       |
+| :--- | :------------- | :----------------- |
+|      | cbrt `立方根`  | max `最大值`       |
+|      | log `对数`     | round `四舍五入`   |
+|      | abs `取绝对值` | floor `地板函数`   |
+|      | atan `反正切`  | ceil  `天花板函数` |
+|      | trunc `去小数` | pow `次方幂`       |
+|      | PI `π派`       |                    |
 
 ## [三角函数sin\cos\tan\cot角度计算](https://www.jianshu.com/p/069291bedbc8)
 
