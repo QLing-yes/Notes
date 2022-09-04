@@ -339,16 +339,14 @@ export default { state, getters ,mutations, actions}
 - `props` 可以是数组或对象，用于接收来自父组件的数据。
 
   ```js
-  <view>{{Field}}</view>
   ///
   export default {
       props: {
           Field: {
-              <String,Number,Boolean,Array,Object,Date,Function,Symbol>
-              type: [String, Number,...], //类型⬆
-              default: 0,//默认值<可以是函数>
-              required: true,//是否必填
-              validator: function(value) {//将该 prop 的值作为唯一的参数代入
+              type: [String, Number,...], //类型
+              default: 0,//默认值
+              required: true,//必填?
+              validator: function(value) {//验证器
                   return value >= 0//返回 false 的时抛出错误 
               }
           }
@@ -356,7 +354,6 @@ export default { state, getters ,mutations, actions}
   }
   ///
   <componentA :Field="10"> </componentA>
-  // v-for="post in posts" //vue3
   ```
   
   1. 父级 `prop` 的更新会向下流动到子组件中, 不应该在一个子组件内部改变 `prop

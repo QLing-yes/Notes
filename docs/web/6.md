@@ -132,6 +132,7 @@ document.write(str.replace(/Microsoft/, "W3School"))
 
 > **可以判断** - 字符串 / 数值 / 布尔值 / Undefined / function
 > **不能判断** - null  与 Object  ,  Object 和Array
+> `Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()` - 不能判断`NaN`
 
 ```javascript
 //运算符typeof

@@ -1,29 +1,24 @@
-> **全篇为组合式**
-
-## 介绍 [🔗](https://staging-cn.vuejs.org/guide/introduction.html#api-styles)
-
-- **选项式 API**
-
-  1. 定义的属性都会暴露在函数内部的 `this`(指向当前的组件实例) 上
-  2. 是基于 组合式 API 实现的另一种形式
+## 介绍 [🔗](https://cn.vuejs.org/api/sfc-script-setup.html#defineexpose)
 
 - **组合式 API**  [setup](https://staging-cn.vuejs.org/api/sfc-script-setup.html)
 
-  1. 视图层可直接获取逻辑层对象
-
-  2. ```vue
-     <script setup></script>
-     /* OR 选项式*/
+  1. ```vue
+     <script setup>
+     	defineExpose({  a,  b })//暴露的对象
+     </script>
+     /* OR */
      <script>
-     export default { setup() {return {/*暴露对象*/} }//通过this访问setup暴露的对象
+     	export default { setup() {return {/*暴露对象*/} }//通过this访问setup暴露的对象
      </script>
      ```
 
-  3. 更好的兼容TS
+  2. 完美取代`mixin`。
 
-  4. 完美取代`mixin`。
+
 
 ## 响应式
+
+#### reactive() shallowReactive()
 
 - `reactive()`**默认是深层响应式**(深代理);
 
@@ -35,12 +30,14 @@
 
 - `nextTick(func)`更新后的dom;
 
-```js
+```javascript
 import { reactive } from 'vue'
 const state = reactive({ ... })//reactive() 返回一个原始对象的 Proxy
 ```
 
  `reactive()` [的局限性](https://staging-cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#limitations-of-reactive)
+
+> 仅对引用类型有效
 
 **`ref()` 定义响应式变量**
 
@@ -48,7 +45,7 @@ const state = reactive({ ... })//reactive() 返回一个原始对象的 Proxy
 -  ref 在作为组件模板顶层 property 被访问时，它们会被自动“解包(解构)”
 - 在深层响应式对象内时，会发生 ref 解包;
 
-```js
+```javascript
 import { ref } from 'vue'
 const count = ref(0);//{ value: 0 }
 count.value = { xx: 0 };//{ value: { xx: 0 } }
@@ -58,17 +55,11 @@ count.value = { xx: 0 };//{ value: { xx: 0 } }
   1. 无需手动添加value
   2. **处于实验性阶段**
 
-------
-
-> TIP
-
 - reactive()入参一个代理会返回它自己(直接返回)
 
-## 格式
+## [生命周期](https://cn.vuejs.org/api/composition-api-lifecycle.html)
 
-- 开头
-  1. `v` - 自定义指令
-  2. `on` - 多数为生命周期钩子
+
 
 ## 自定义指令
 
@@ -95,7 +86,7 @@ export default {
 
 **`简化形式`**
 
-```js
+```javascript
 //v-xxx 
 // 这会在 `mounted` 和 `updated` 时都调用
 app.directive('xxx', (/* 钩子参数 */) => {})
@@ -103,7 +94,7 @@ app.directive('xxx', (/* 钩子参数 */) => {})
 
 ### el
 
-```js
+```javascript
 vnode.data.on.<someEvent>.apply(vnode.context,[参数...]);//触发并代理
 el.event.appear.handler = () => {//修改代理
     vnode._vei.onAppear();//触发事件//vue3
@@ -124,7 +115,7 @@ el.event.appear.handler = () => {//修改代理
 - use()必须提供 `install` 方法
 - 该方法需要在调用 `new Vue()` 之前被调用。
 
-```js
+```javascript
 import { createApp } from 'vue'
 const app = createApp({})
 const Plugin = {
@@ -145,16 +136,87 @@ app.use(Plugin, options)//options 对应上面的 options
 
 - 视图渲染后赋值
 
-```js
+```javascript
 const content = ref<Element>();
 //<div ref="content" />
+//unref(content) -> isRef(val) ? val.value : val
 ```
 
 ## provide / inject
 
-```js
+```javascript
 provide(/* 注入名 */ 'message', /* 值 */ 'hello!')//提供
 inject('message')//注入
+```
+
+## Props
+
+```javascript
+const post = { id: 1,title: 'Vue' }
+<BlogPost v-bind="post" /> //等价于 ↓
+//<BlogPost :id="post.id" :title="post.title" />
+```
+
+```typescript
+type prop = {
+  id?: string[]
+}
+const props = defineProps<prop>()
+//prop属性
+        prop: {
+            type: [String, Number,...], //类型
+            default: 0,//默认值
+            required: true,//必填?
+            validator: function(value) {//验证器
+                return value >= 0//返回 false 的时抛出错误 
+            }
+        }
+```
+
+## $emit
+
+```typescript
+const emit = defineEmits(['inFocus', 'xx'])
+emit('xx')
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+emit('change',1)
+```
+
+```javascript
+const emit = defineEmits({ xx(payload){ /*返回值bool 判断验证是否通过*/ } })
+```
+
+> [配合 `v-model` 使用](https://cn.vuejs.org/guide/components/events.html#usage-with-v-model)
+
+## slot
+
+```javascript
+//A.vue
+<div>
+    <slot name="header" xx="1"></slot>
+</div>
+//B.vue
+<A v-slot="attr">
+  <template v-slot:header>//#name // #[name] //#[name]="attr"
+    <div>{{attr.xx}}</div>
+  </template>
+</A>
+```
+
+## setup函数
+
+- ctx 上下文对象
+
+```javascript
+export default {
+  emits: ['submit'],
+  setup(props, ctx) {
+    ctx.emit('submit')
+  }
+}
 ```
 
 ## 定义全局对象
@@ -171,3 +233,10 @@ $foo(1,'1')
 > OR: provide / inject
 >
 > ...
+
+## script setup
+
+```js
+ defineExpose({  a,  b })//导出对象
+```
+
