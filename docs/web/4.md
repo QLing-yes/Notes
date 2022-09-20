@@ -124,13 +124,41 @@ const Plugin = {
 app.use(Plugin, options)//options 对应上面的 options
 ```
 
-## 路由
-
-- [简单路由示例](https://staging-cn.vuejs.org/guide/scaling-up/routing.html#simple-routing-from-scratch)
-
 ## [异步组件](https://staging-cn.vuejs.org/guide/components/async.html#async-components)
 
 - 拆分应用为更小的块，并仅在需要时再从服务器加载相关组件
+
+```js
+const Foo = defineAsyncComponent(() => import('./Foo.vue'))
+const Foo = defineAsyncComponent(() => {
+  return new Promise((resolve, reject) => { resolve(/* 获取到的组件 */) })
+})
+```
+
+```js
+const AsyncComp = defineAsyncComponent({
+  // 加载函数
+  loader: () => import('./Foo.vue'),
+  // 加载异步组件时使用的组件
+  loadingComponent: LoadingComponent,
+  // 展示加载组件前的延迟时间，默认为 200ms
+  delay: 200,
+  // 加载失败后展示的组件
+  errorComponent: ErrorComponent,
+  // 如果提供了一个 timeout 时间限制，并超时了
+  // 也会显示这里配置的报错组件，默认值是：Infinity
+  timeout: 3000
+})
+```
+
+## [Suspense](https://cn.vuejs.org/guide/built-ins/suspense.html#suspense)
+
+## :is
+
+```vue
+<component :is="uuu" />
+<div is="vue:uuu"></div>
+```
 
 ## $refs
 
@@ -140,13 +168,14 @@ app.use(Plugin, options)//options 对应上面的 options
 const content = ref<Element>();
 //<div ref="content" />
 //unref(content) -> isRef(val) ? val.value : val
+//:ref="(el) => child = el"
 ```
 
 ## provide / inject
 
 ```javascript
-provide(/* 注入名 */ 'message', /* 值 */ 'hello!')//提供
-inject('message')//注入
+provide('','')
+inject('')
 ```
 
 ## Props
@@ -237,6 +266,7 @@ $foo(1,'1')
 ## script setup
 
 ```js
- defineExpose({  a,  b })//导出对象
+//导出对象 
+defineExpose({})
 ```
 

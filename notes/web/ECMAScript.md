@@ -334,6 +334,15 @@ d)每调用next方法返回一个包含vaue和done属性的对象<br />
 
 [详细](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/function*)
 
+# 迭代
+
+```js
+array.keys()//返回可迭代键
+array.entries()//返回可迭代键值对 [key,value]
+```
+
+
+
 # Promise
 
 状态处理:
