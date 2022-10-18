@@ -14,8 +14,6 @@
 
   2. 完美取代`mixin`。
 
-
-
 ## 响应式
 
 #### reactive() shallowReactive()
@@ -41,6 +39,8 @@ const state = reactive({ ... })//reactive() 返回一个原始对象的 Proxy
 
 **`ref()` 定义响应式变量**
 
+- ShallowRef()//浅
+
 - `ref()` 使我们能创造一种**任意值的 “引用”** 并能够不丢失响应性地随意传递
 -  ref 在作为组件模板顶层 property 被访问时，它们会被自动“解包(解构)”
 - 在深层响应式对象内时，会发生 ref 解包;
@@ -54,8 +54,6 @@ count.value = { xx: 0 };//{ value: { xx: 0 } }
 - 响应性语法糖 `$ref()`
   1. 无需手动添加value
   2. **处于实验性阶段**
-
-- reactive()入参一个代理会返回它自己(直接返回)
 
 ## [生命周期](https://cn.vuejs.org/api/composition-api-lifecycle.html)
 
@@ -169,14 +167,18 @@ const content = ref<Element>();
 //<div ref="content" />
 //unref(content) -> isRef(val) ? val.value : val
 //:ref="(el) => child = el"
+const tiptap = ref<InstanceType<typeof Component>>//获取组件实列(具有类型)
 ```
 
 ## provide / inject
 
 ```javascript
-provide('','')
-inject('')
+const ProductKey: InjectionKey<{a:string}> = Symbol('Product');
+provide(ProductKey,{a:'1'});
+inject(ProductKey);
 ```
+
+> 建议不使用`provide / inject`, 自己创建文件去管理状态
 
 ## Props
 
@@ -265,8 +267,13 @@ $foo(1,'1')
 
 ## script setup
 
+#### 组件实列类型
+
 ```js
-//导出对象 
+//导出对象(a.vue)
 defineExpose({})
+//b.vue
+import A from 'a.vue'
+const _A = ref<InstanceType<typeof A>>()
 ```
 

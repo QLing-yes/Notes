@@ -600,8 +600,8 @@ Vue.use(Plugin, options)//options 对应上面的 options
 
 # image base64
 
-```
- :src=" 'data:image/jpeg;base64,' + base64-Obj "
+```javascript
+ //:src=" 'data:image/jpeg;base64,' + base64-Obj "
 ```
 
 # BindingX

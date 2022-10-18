@@ -405,16 +405,16 @@ SomeNameSpaceName.SomeClassName;
 
 ```json
 "compilerOptions": {
-    "target": "ES6",//编译至目标版本
-    //"target": "ES2017",
-    "module": "commonjs",
-    //"module": "NodeNext",
-    "paths": { "@/*": ["./*" ] },/* 路径映射 //打包后映射的路径不会处理 */
+    "target": "ES6",
+    "module": "ESNext",
+    
+    //"baseUrl": "./", /* 相对路径时的根目录 */
+    //"paths": { "@/*": ["./*" ] },/* 路径映射 //打包后映射的路径不会处理 */
     
     "outDir": "./outDir",/* 指定发出文件位置 */
     "declaration": true, /* 为发出的JavaScript文件生成 d.ts */
     "sourceMap": true, /* 为发出的JavaScript文件创建源映射文件 */
-    "inlineSourceMap": true, /* 在发出的JavaScript中包含源源映射文件。*/
+    //"inlineSourceMap": true, /* 在发出的JavaScript中包含源源映射文件。*/
     
     "noImplicitAny": true,  /*为隐含`任何`类型的表达式和声明启用错误报告  */
     "experimentalDecorators": true,//启用实验性的装饰器

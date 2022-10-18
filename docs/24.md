@@ -13,8 +13,8 @@
 
 <img src="../image/image-20220525000703167.png" alt="image-20220525000703167"  />
 
-- [阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 - [GitHub Doc](https://docs.github.com/cn/get-started/using-git/pushing-commits-to-a-remote-repository)
+
 
 [操作](https://docs.github.com/cn/get-started/using-git/pushing-commits-to-a-remote-repository)
 
@@ -197,4 +197,6 @@ tsc -w
 
 # sass
 
-`npm i sass@1.32.6 -D`
+`npm i sass`
+
+- sass --watch --style compressed ./src:./dist

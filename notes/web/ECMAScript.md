@@ -177,23 +177,21 @@ Object.assign(target,object2,object3,...);   // 第一个参数是目标对象�
    ```
    
 
-# Map 和 Set [🔗](https://www.runoob.com/w3cnote/es6-map-set.html)
+# ✨ Map, Set, Ref 
 
-new Map() [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
+new Map([key,value],...) - 键值对绑定 [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95)
 
-- 另一个: weakMap键只能是**引用类型**
+> weakMap 键是**弱引用类型** 键失效时将被回收(不可迭代)
 
->Map([["key1", "value1"],["key2", "value2"]]); - 初始化 Map，可以以数组的格式来传入键值对;
->**`obj.set(key,value);存`** -- **`obj.get(key);取`**
->set-键 和 值  用来`关联两个对象` - 可以是任何
+new Set() 存储具有唯一性 [🔗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
-new Set() 
->obj.add() - 往Set()添加 和数组差不多
->new Set('hello') // `{"h", "e", "l", "o"}`
->
->.add();-添加 | .size();-大小 | .delete();-删除 | .has();-检测 | .clear();-清空 | `拥有iterator接口`
+>WeakSet 保存弱引用集合
 
-### `数组去重|并集|交集|差集|排序`
+WeakRef() - 保留对象的弱引用 [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakRef)
+
+> 不会阻止被弱引用对象被 GC 回收
+
+`数组去重|并集|交集|差集|排序`
 
 ```js
 /*数组去重*/new Set(Array);
@@ -441,10 +439,13 @@ function func() {
 Sync.call(func).then((v)=>{
 	console.log(v)
 })
-//同步异步化
-Promise.resolve().then(()=>{
-    
-})
+//异步化
+Promise.resolve().then(()=>{})
+//
+await Promise.all(index.map(async ({ name }) => {
+    name = name.replace(reg, '');
+    tags[name] = await col.countDocuments({ 'tag': { $eq: name } });
+}))
 ```
 
 # Class
@@ -514,7 +515,7 @@ x.a = 10
 console.log(target.a);//10
 ```
 
-# Reflect
+# [Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 
 - 反射机制指的是程序在运行时能够获取自身的信息
 - 窥探对象的内部结构；换句话说这就是反射。
@@ -533,7 +534,7 @@ console.log(target.a);//10
 
 - Reflect.construct(fu, [args]) - `类似new了一个函数`
 
-- Reflect.has(target, name) - `对应name in obj里面的in运算符。`
+- Reflect.has(target, name) - `判断对象是否具有某属性(和in运算符一样)`
 
 - ------
 

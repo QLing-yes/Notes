@@ -79,15 +79,9 @@ console.log(arguments.callee +"");//其实整体是在一个函数内部写
         --doc					  文档
         --test					  单元测试
 
-<img src="..\..\image\image-20210216135545003.png" alt="image-20210216135545003" style="zoom: 50%;float: left；" />[15:00](https://www.bilibili.com/video/BV1bs411E7pD?p=9&spm_id_from=pageDriver)
 
 
-
-
-
-
-
-
+[15:00](https://www.bilibili.com/video/BV1bs411E7pD?p=9&spm_id_from=pageDriver)
 
 # `文件系统（File System）`
 
@@ -208,7 +202,7 @@ fs.open("hello.txt","w",function(err,fd) {
 - `mode` [`<integer>`](http://url.nodejs.cn/SXbo1v) **默认值:** `0o666`。
 - `flag`  参见[文件系统 `flag` 的支持](http://nodejs.cn/api/fs.html#fs_file_system_flags)。 **默认值:** `'w'`。
 
-<img src="..\..\image\image-20210218110825429.png" alt="image-20210218110825429" style="zoom: 70%;float: left" />
+<img src="..\image\image-20210218110825429.png" alt="image-20210218110825429" style="zoom: 70%;float: left" />
 
 ## [流式文件写入](http://nodejs.cn/api/fs.html#fs_fs_createwritestream_path_options)
 

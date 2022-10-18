@@ -34,3 +34,17 @@ old_y + distance * Math.Sin(radian);
 #  欧拉角 四元素 ...
 
 https://malei0311.gitbooks.io/threejs-doc-cn/content/getstart/matrix_transformations.html
+
+# 贝塞尔曲线算法
+
+> https://segmentfault.com/a/1190000018597975
+
+<img style="height:180px;width:600px;" src="https://segmentfault.com/img/bVbqccZ/view?w=360&h=150" alt="preview"  />
+
+`点到点的过程为 t = 起点 / 目标 * 100`
+
+1. a和b点连成线段ab，点o沿ab起点至终点（一阶）
+2. c和d点 成线段cd，d和e点 成线段de。点a沿cd起点至终点，点b沿de起点至终点（二阶）
+3. n阶...; 就是一堆 点到点点到点点到点 的相同耗时的运动过程
+
+> 搭配`requestAnimationFrame`方法(web)食用更佳
