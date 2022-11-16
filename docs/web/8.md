@@ -181,7 +181,7 @@ Object.assign(target,object2,object3,...);   // 第一个参数是目标对象�
 
 new Map([key,value],...) - 键值对绑定 [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95)
 
-> weakMap 键是**弱引用类型** 键失效时将被回收(不可迭代)
+> WeakMap键是**弱引用类型** 键失效时将被回收(不可迭代)
 
 new Set() 存储具有唯一性 [🔗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 

@@ -46,7 +46,7 @@
   
 - `git push origin main --force` - 覆盖远程
 
-  1. `-f`
+  1. `-f` 
 
 - [回滚](https://zhuanlan.zhihu.com/p/137856034)
 

@@ -339,10 +339,10 @@ console.timeEnd("计时器名字")//`关闭`一个计时器
 # [定时器](https://www.runoob.com/jsref/met-win-setinterval.html)
 
 ```javascript
-var a = setInterval(() => {...},3000);
-	    setTimeout()
-//对应上面 //取消 timeout
+setInterval()
 clearInterval()
+
+setTimeout()
 clearTimeout()
 ```
 
