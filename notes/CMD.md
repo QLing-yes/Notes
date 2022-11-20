@@ -80,6 +80,7 @@ SSH
 
 - `ssh-keygen -t rsa` - 生成
 - `ssh -T git@github.com` - 在github验证是否存在
+- `ssh -T -p 443 git@ssh.github.com`
 
 .gitignore
 
