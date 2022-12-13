@@ -4,7 +4,7 @@
 
 https://juejin.cn/post/6945640942976122910#heading-1
 
-# let 和 const
+## let 和 const
 
 ***let***
 
@@ -37,7 +37,7 @@ https://juejin.cn/post/6945640942976122910#heading-1
 - 有作用域
 - 初始后不能修改, **对常量内的数组或对象修改不会报错**
 
-# 解构赋值
+## 解构赋值
 
 - 按照一定结构(比如同名)模式提取值和赋值
 
@@ -58,7 +58,7 @@ https://juejin.cn/post/6945640942976122910#heading-1
   >
   > 从一个对象取其某属性
 
-# 反引号``
+## 反引号``
 
 - 内容中可以直接出现换行符，不需要 + 号连接；
 
@@ -69,7 +69,7 @@ https://juejin.cn/post/6945640942976122910#heading-1
 
 - 变量拼接 ${}   `123${我是变量}4567`
 
-# ()=>{} 的特性(区别)
+## ()=>{} 的特性(区别)
 
 1. 箭头函数的**this指针是静态的**, 始终**指向创建时的上级作用域**
 
@@ -92,7 +92,7 @@ https://juejin.cn/post/6945640942976122910#heading-1
 const r = [1,3,6,7].filter(item => item % 2 === 0);//filter条件筛选
 ```
 
-# rest 参数
+## rest 参数
 
 - `function name(...rest)` -- 前面三个点后面任意名 『数组类型』
 
@@ -100,8 +100,6 @@ const r = [1,3,6,7].filter(item => item % 2 === 0);//filter条件筛选
 > 用于获取函数的实参,用来代替 arguments『obj类型』
 >
 > **类似于解构赋值**  如果传入实参多于形参, 将赋值给在最后面的 ...rest
-# 对象
-
 ## `属性名表达式`
 
 添加属性示例:	obj.[表达式] 
@@ -164,7 +162,7 @@ Object.assign(target,object2,object3,...);   // 第一个参数是目标对象�
 
 > ...也是 剩余运算符
 
-# 数组 [🔗](https://www.runoob.com/w3cnote/es6-array.html)
+## 数组 [🔗](https://www.runoob.com/w3cnote/es6-array.html)
 
 部分api:
 
@@ -177,7 +175,7 @@ Object.assign(target,object2,object3,...);   // 第一个参数是目标对象�
    ```
    
 
-# ✨ Map, Set, Ref 
+## ✨ Map, Set, Ref
 
 new Map([key,value],...) - 键值对绑定 [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95)
 
@@ -207,7 +205,9 @@ new Set([...[...a].filter(x => !b.has(x)),...[...b].filter(x => !a.has(x))]);
 
 # 字符串 [🔗](https://www.runoob.com/w3cnote/es6-string.html)
 
-# Symbol([description])	[🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+## Symbol([description])
+
+[🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 - **symbol** 是一种基本数据类型。
 
