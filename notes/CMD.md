@@ -190,16 +190,14 @@ tsc -w
 
 # Express
 
-- npm i express
-- npm install @types/express --save-dev
-
 # mongoose
-
-- 
-- npm i @types/mongoose
 
 # sass
 
 `npm i sass`
 
 - sass --watch --style compressed ./src:./dist
+
+# nvm
+
+[node版本管理工具](https://cloud.tencent.com/developer/article/1409081)

@@ -183,11 +183,11 @@ new Map([key,value],...) - 键值对绑定 [🔗](https://developer.mozilla.org/
 
 new Set() 存储具有唯一性 [🔗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
->WeakSet 保存弱引用集合
+>WeakSet 保存**弱引用**集合
 
-WeakRef() - 保留对象的弱引用 [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakRef)
+WeakRef() - 保留对象的**弱引用** [🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakRef)
 
-> 不会阻止被弱引用对象被 GC 回收
+> **弱引用**不会阻止对象被 GC 回收
 
 `数组去重|并集|交集|差集|排序`
 
