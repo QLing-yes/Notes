@@ -1,6 +1,6 @@
-### [小程序不支持列表](https://uniapp.dcloud.io/tutorial/vue3-components.html#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%94%AF%E6%8C%81%E5%88%97%E8%A1%A8)
+## [小程序不支持列表](https://uniapp.dcloud.io/tutorial/vue3-components.html#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%94%AF%E6%8C%81%E5%88%97%E8%A1%A8)
 
-### [v-for 与 v-if 一同使用](https://uniapp.dcloud.io/vue3-basics?id=v-for-与-v-if-一同使用)
+## [v-for 与 v-if 一同使用](https://uniapp.dcloud.io/vue3-basics?id=v-for-与-v-if-一同使用)
 
 可以把 `v-for` 移动到 `template` 标签中来修正：
 
@@ -12,13 +12,13 @@
 </template>
 ```
 
-### [内联处理器中的方法](https://uniapp.dcloud.io/vue3-basics?id=内联处理器中的方法)
+## [内联处理器中的方法](https://uniapp.dcloud.io/vue3-basics?id=内联处理器中的方法)
 
 访问原始的 DOM 事件-特殊变量:
 
 - $event - 原生事件对象
 
-### [`事件修饰符`](https://uniapp.dcloud.io/vue3-basics?id=事件修饰符)
+## [`事件修饰符`](https://uniapp.dcloud.io/vue3-basics?id=事件修饰符)
 
 修饰符 (modifier) 是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。
 例如，`.prevent` 修饰符告诉 @事件对于触发的事件调用 `event.preventDefault()`：
@@ -42,7 +42,7 @@
 > 使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，
 > 用 `@click.prevent.self` 会阻止所有的点击，而 `@click.self.prevent` 只会阻止对元素自身的点击。
 
-### [部分事件映射表](https://uniapp.dcloud.io/vue3-basics?id=事件映射表)
+## [部分事件映射表](https://uniapp.dcloud.io/vue3-basics?id=事件映射表)
 
 ```js
 // 左侧为 WEB 事件，右侧为 ``uni-app`` 对应事件
@@ -70,13 +70,13 @@
     }
 ```
 
-#### nvue事件穿透
+## nvue事件穿透
 
 - `eventPenetrationEnabled`属性，当值为true（默认为false）时，View的子View仍能正常响应事件，但View自身将不会响应事件。
 
 - `userInteractionEnabled`属性，当值为false（默认为true）时，View及其子View均不响应事件，事件向下层View传递。
 
-#### [APP-NVUE通用事件](https://uniapp.dcloud.io/component/waterfall?id=事件)
+## [APP-NVUE通用事件](https://uniapp.dcloud.io/component/waterfall?id=事件)
 
 - click：用于监听点击事件。
 - longpress：用于监听长按事件
@@ -163,7 +163,7 @@ computed: {
 - 页面刚加载时，因为没有变化，所以不会执行。用`immediate`来解决
 - 为了发现对象内部值的变化，可以在选项参数中指定 `deep: true` 。
 
-# 标签属性变化
+## 标签属性变化
 
 - `@click="one($event), two($event)"`
 
@@ -178,7 +178,7 @@ computed: {
   ```
   
 
-# CSS 功能✨
+## CSS 功能✨
 
 `vue3`
 
@@ -188,7 +188,7 @@ computed: {
 
 `<style module>` [🔗](https://staging-cn.vuejs.org/api/sfc-css-features.html#css-modules)
 
-## `v-bind()`
+### `v-bind()`
 
 - css链接对象状态
 
@@ -201,7 +201,7 @@ computed: {
 
 
 
-# `weex`
+## `weex`
 
   ```js
   //获取元素信息
@@ -213,8 +213,7 @@ computed: {
   });
   ```
 
-
-# 结构
+## 结构
 
 ```vue
 <script>
@@ -233,13 +232,13 @@ export default {
 </script>
 ```
 
-# [`Vuex`](https://uniapp.dcloud.io/vue3-vuex)
+## [`Vuex`](https://uniapp.dcloud.io/vue3-vuex)
 
 > 具体文件配置:
 > [uniapp](https://uniapp.dcloud.io/vue3-vuex?id=state)
 > [vue3](https://next.vuex.vuejs.org/zh/guide/state.html)
 
-## 结构
+### 结构
 
 ```js
 // @/store/index.js
@@ -302,9 +301,9 @@ export default { state, getters ,mutations, actions}
   
   > 视图状态不更新时可: Vue.set( target, key, value )
 
-# `组件`
+## `组件`
 
-## 注册组件
+### 注册组件
 
 - 符合‘components/组件名称/组件名称.vue’目录结构，easycom方式可直接使用组件
 
@@ -326,7 +325,7 @@ export default { state, getters ,mutations, actions}
 >
 > - 符合 `components/组件名称/组件名称.vue` 目录结构。就可以不用引用、注册，直接在页面中使用。
 
-# 动态组件✨
+## 动态组件✨
 
 ```vue
 <component :is="组件对象"></component>
@@ -334,7 +333,7 @@ export default { state, getters ,mutations, actions}
 
 - vue3 
 
-## [props](https://uniapp.dcloud.io/vue3-components?id=props)
+### [props](https://uniapp.dcloud.io/vue3-components?id=props)
 
 - `props` 可以是数组或对象，用于接收来自父组件的数据。
 
@@ -535,13 +534,13 @@ v-model:number="obj" //直接标签绑定 v-model:prop="值"
   </template>
   ```
 
-# 混入
+## 混入
 
 - 创建js文件 `export default {}`
 - 导入混入 `export default { mixins:[<objs>] }`
 - 全局 `Vue.mixin({<objs>})`
 
-# 依赖注入✨
+## 依赖注入✨
 
 `vue3`
 
@@ -577,16 +576,16 @@ export default {
 }
 ```
 
-# [组件实例](https://cn.vuejs.org/v2/api/#vm-refs)
+## [组件实例](https://cn.vuejs.org/v2/api/#vm-refs)
 
 可从任意页面或组件拿取任意数据
 
-# subNVue 原生子窗体
+## subNVue 原生子窗体
 
 - [api](https://uniapp.dcloud.io/api/window/subNVues?id=app-getsubnvuebyid)
 - [配置指南](https://ask.dcloud.net.cn/article/35948)
 
-# [Vue.use()](https://cn.vuejs.org/v2/guide/plugins.html#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)
+## [Vue.use()](https://cn.vuejs.org/v2/guide/plugins.html#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)
 
 - 必须提供 `install` 方法
 - 该方法需要在调用 `new Vue()` 之前被调用。
@@ -598,13 +597,13 @@ const Plugin = {
 Vue.use(Plugin, options)//options 对应上面的 options
 ```
 
-# image base64
+## image base64
 
 ```javascript
  //:src=" 'data:image/jpeg;base64,' + base64-Obj "
 ```
 
-# BindingX
+## BindingX
 
 - timing
   1. `expression`: easingFunction(t, 起始位置, 移动距离, 持续时间)

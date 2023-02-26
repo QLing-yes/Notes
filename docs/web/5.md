@@ -277,3 +277,120 @@ import A from 'a.vue'
 const _A = ref<InstanceType<typeof A>>()
 ```
 
+## Pinia
+
+### 结构
+
+```typescript
+import { createPinia, defineStore, setMapStoreSuffix } from 'pinia'
+
+//定义
+export const useStore = defineStore('id1', {
+  state: () => ({}),
+  // state === getters
+  getters: {},
+  actions: {},
+})
+export default useStore
+
+//注册(main.ts)
+setMapStoreSuffix('Store')// 自定义mapStores的属性访问后缀
+declare module 'pinia' {
+  export interface MapStoresCustomization {
+    suffix: 'Store'// 自定义mapStores的属性访问后缀
+  }
+}
+const pinia = createPinia()
+pinia.use(SecretPiniaPlugin)
+new Vue({ pinia }).$mount('#app')
+
+//使用
+store.name// 通用访问
+mapState(useStore, ['name'])// 只读
+mapWritableState(useStore, ['name'])// 可写
+// 访问多个store集合
+mapStores(useStore, useStore2)//使用(id + 后缀"Store" -> mapStores["id1Store"])
+// 访问 action
+mapActions(useStore, ['name'])
+```
+
+### [方法API](https://pinia.vuejs.org/zh/core-concepts/state.html#resetting-the-state)
+
+```typescript
+//将 state 重置为初始值。
+store.$reset()
+//批量修改 state
+store.$patch({} | (state) => {})
+//替换 state
+state.value = {}
+
+//侦听 state 变化($patch 后只触发一次)
+store.$subscribe((mutation, state) => {
+  mutation.type // 'direct' | 'patch object' | 'patch function'
+  mutation.payload // 传递给 $patch() 的补丁对象。
+  // 每当状态发生变化时，将整个 state 持久化到本地存储。
+  localStorage.setItem('cart', JSON.stringify(state))
+},{ detached: true })//detached 是否从组件中分离(true时组件卸载时不销毁侦听)
+
+//侦听 action
+const unsubscribe = store.$onAction(({
+    name, // action 名称
+    store, // store 实例，类似 `someStore`
+    args, // 传递给 action 的参数数组
+    after, // 在 action 返回或解决后的钩子
+    onError, // action 抛出或拒绝的钩子
+	}) => {
+    // 它等待着promise的成功返回 
+    after((result) => {})
+    // 如果 action 抛出或返回一个拒绝的 promise，这将触发
+    onError((error) => {})
+}, true) //参数二表示是否从组件中分离
+// 手动删除监听器
+unsubscribe()
+
+```
+
+### [插件](https://pinia.vuejs.org/zh/core-concepts/plugins.html)
+
+```typescript
+function SecretPiniaPlugin(context: PiniaPluginContext) {
+    
+  context.pinia // 用 `createPinia()` 创建的 pinia。 
+  context.app // 用 `createApp()` 创建的当前应用(仅 Vue 3)。
+  context.store // 该插件想扩展的 store
+  context.options // 定义传给 `defineStore()` 的 store 的可选对象。
+    
+  const {store} = context;
+  // 每个store都有单独的自定义属性
+  store.hello = ref('secret')
+  // 所有的store都共享shared属性
+  store.shared = ''
+    
+  return { }//创建的每个store中都会添加其中的属性。
+}
+
+//main.ts
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+pinia.use(SecretPiniaPlugin)
+```
+
+### [组合式 Store](https://pinia.vuejs.org/zh/cookbook/composing-stores.html)
+
+> **两个或更多的store相互使用时**不可以在 setup函数 中直接互相读取对方, 但可以在函数中
+
+- `ref()` 就是 `state` 属性
+- `computed()` 就是 `getters`
+- `function()` 就是 `actions`
+
+```typescript
+export const useCounterStore = defineStore('counter', () => {
+  const count = ref(0)
+  function increment() {
+    count.value++
+  }
+
+  return { count, increment }
+})
+```
+
