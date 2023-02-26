@@ -384,13 +384,12 @@ pinia.use(SecretPiniaPlugin)
 - `function()` 就是 `actions`
 
 ```typescript
+import { computed } from 'vue'
 export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  function increment() {
-    count.value++
-  }
-
-  return { count, increment }
+    const myState = ref({})
+    function myActions() {}
+    const myGetters = computed(() => myState)
+    return { myState, myActions, myGetters }
 })
 ```
 
